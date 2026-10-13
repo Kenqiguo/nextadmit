@@ -1,0 +1,8 @@
+{
+  "name": "nextadmit",
+  "version": "0.1.0",
+  "private": true,
+  "description": "A browser-local prototype for exploring college transfer profiles and universities",
+  "scripts": {"start": "node server.cjs"},
+  "engines": {"node": ">=18"}
+}

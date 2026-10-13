@@ -1,0 +1,16 @@
+.claude/
+.vscode/
+.playwright-mcp/
+node_modules/
+.env
+.env.*
+!.env.example
+*.log
+Thumbs.db
+Desktop.ini
+
+# Local handoff notes include workspace paths and private preview history.
+PROJECT_BRIEF.md
+CODEX_START_HERE.md
+LOCAL_PREVIEW_GUIDE.md
+AGENTS.md
