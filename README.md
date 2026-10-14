@@ -2,6 +2,8 @@
 
 **In Progress · AI-assisted prototype**
 
+[Live demo](https://kenqiguo.github.io/nextadmit/)
+
 NextAdmit helps students, especially international college transfer applicants, explore the backgrounds behind admission outcomes and compare universities. Built with HTML, CSS, and vanilla JavaScript, with no framework or package dependencies.
 
 ## Features
@@ -71,4 +73,8 @@ Local checks covered JavaScript syntax, four-page navigation, university loading
 
 The founder defined the audience, requirements, design preferences, and personal story. **AI assisted with code generation, debugging, and data processing.** Human review and validation remain necessary. No real user counts, verified admission statistics, shared backend, or tested external integrations are claimed.
 
-This repository contains the prototype source. A hosted demo is a separate setup step; uploading the project does not deploy it automatically.
+## Deployment
+
+The [live demo](https://kenqiguo.github.io/nextadmit/) is hosted on GitHub Pages. The workflow in `.github/workflows/pages.yml` publishes only `dist/` when website files change on `main`, and can also be run manually from GitHub Actions. No server or package installation is required for deployment.
+
+The public demo retains browser-local storage: visitors do not share submissions. Localhost and the public demo have separate storage.
