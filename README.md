@@ -6,6 +6,22 @@
 
 NextAdmit helps students, especially international college transfer applicants, explore the backgrounds behind admission outcomes and compare universities. Built with HTML, CSS, and vanilla JavaScript, with no framework or package dependencies.
 
+## Problem and audience
+
+An admission decision alone does not explain an applicant's path. Students considering a US college transfer need context such as GPA, previous institution, coursework, activities, and language background to interpret an outcome. NextAdmit brings these details into fully expanded profiles alongside a searchable university directory.
+
+The primary audience is international students considering transfer to US universities, including community college students. This first version demonstrates how those experiences could be organized; fictional examples are not evidence of admission likelihood or measured user demand.
+
+## Technology
+
+- HTML and CSS for page structure, styling, and responsive layouts.
+- Vanilla JavaScript for DOM rendering, hash-based navigation, filtering, sorting, and form validation.
+- Browser APIs: `FormData` for form values, `localStorage` for browser-local persistence, and `fetch` for the bundled university JSON snapshot.
+- Node.js built-in HTTP and filesystem modules for local preview only.
+- Git and GitHub for version control; GitHub Actions and GitHub Pages for static deployment.
+
+There is no application backend, database service, frontend framework, or external AI API in the website.
+
 ## Features
 
 - Fully expanded profiles: GPA, previous institution, credits, activities, awards, English background, admission decisions, final choice, and reflections.
@@ -41,6 +57,8 @@ Submissions are saved only in the current browser's **localStorage**. There are 
 
 The form currently supports limited application terms, majors, and a 4.0 GPA scale. This is an early prototype, not a launched public community.
 
+No real-user population or adoption metrics have been established. Profile counts include fictional examples and records saved in the visitor's browser; they are not counts of registered users.
+
 ## University data and sources
 
 - Ranking: pinned **2026 U.S. News National Universities**, ranks 1–200 including ties, yielding 207 institutions. Separately ranked liberal arts colleges are excluded. This is not described as the latest edition.
@@ -51,6 +69,8 @@ The form currently supports limited application terms, majors, and a 4.0 GPA sca
 These are **not current, international-specific, or transfer-specific quotes**. Insurance, travel, visas, and program fees may add costs. Check official university websites for current requirements and prices.
 
 See [DATA_SOURCES.md](DATA_SOURCES.md) for source URLs, variable definitions, and provenance. The processed snapshot is included in dist/universities.json; rebuilding the original data is not required to run the site.
+
+Source files and references: [2026 ranking republication](https://qyliuxue.com/rank/32898543582171136.html), [additional tied-rank reference](https://www.compassedu.hk/usnews?no=15), [IPEDS HD2024](https://nces.ed.gov/ipeds/datacenter/data/HD2024.zip), and [IPEDS IC2023_AY](https://nces.ed.gov/ipeds/datacenter/data/IC2023_AY.zip). Rankings are taken from republications, not an official U.S. News API.
 
 ## Project structure
 
