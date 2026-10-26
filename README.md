@@ -4,7 +4,7 @@
 
 [Live demo](https://kenqiguo.github.io/nextadmit/)
 
-NextAdmit helps students, especially international college transfer applicants, explore the backgrounds behind admission outcomes and compare universities. Built with HTML, CSS, and vanilla JavaScript, with no framework or package dependencies.
+NextAdmit helps students, especially international college transfer applicants, explore the backgrounds behind admission outcomes and compare universities. Built with HTML, CSS, and vanilla JavaScript, with no frontend framework. The deployed site includes a pinned Supabase browser client. Optional shared submissions use Supabase PostgreSQL through its REST API.
 
 ## Problem and audience
 
@@ -20,7 +20,7 @@ The primary audience is international students considering transfer to US univer
 - Node.js built-in HTTP and filesystem modules for local preview only.
 - Git and GitHub for version control; GitHub Actions and GitHub Pages for static deployment.
 
-There is no application backend, database service, frontend framework, or external AI API in the website.
+With empty database configuration the site remains a browser-local demo. Shared mode uses Supabase PostgreSQL as its backend; no Node server deployment or external AI API is needed.
 
 ## Features
 
@@ -53,7 +53,7 @@ Windows users can also double-click START-WINDOWS.cmd. Serve dist over HTTP; ope
 
 All **eight built-in applicant profiles are fictional examples**, not verified admission records. They do not predict admission chances.
 
-Submissions are saved only in the current browser's **localStorage**. There are no accounts, authentication, shared database, or moderation. Refreshing preserves submissions; clearing browser storage removes them. Different browsers, devices, and origins do not share submissions. Public hosting does not make submissions public. The legacy key `transferbridge-v1` remains for compatibility.
+With empty `dist/database-config.js`, submissions are saved only in the current browser's **localStorage**. Shared mode supports database submissions and manual moderation using anonymous Auth sessions, without email/password registration. Refreshing preserves submissions; clearing browser storage removes them. Different browsers, devices, and origins do not share submissions. Public hosting does not make submissions public. The legacy key `transferbridge-v1` remains for compatibility.
 
 The form currently supports limited application terms, majors, and a 4.0 GPA scale. This is an early prototype, not a launched public community.
 
@@ -85,16 +85,24 @@ Source files and references: [2026 ranking republication](https://qyliuxue.com/r
 | dist/universities.json | Processed university snapshot |
 | server.cjs | Dependency-free local preview server |
 
-Scripts load in this order: profile-order.js → app.js → community.js → story.js. Later scripts override some rendering and routing functions.
+Scripts load in this order: database-config.js → vendor/supabase-2.118.0.js → shared-store.js → profile-order.js → app.js → community.js → story.js → shared-ui.js → wechat.js. Later scripts override some rendering and routing functions.
 
 ## Validation and attribution
 
 Local checks covered JavaScript syntax, four-page navigation, university loading and details, representative filters and sorting, form validation, native-speaker test exemption, and persistence after refresh. Desktop and mobile-width layouts were checked. The owner also confirmed a fictional submission persisted after refresh. These are practical local checks, not comprehensive automated or cross-browser testing.
 
-The founder defined the audience, requirements, design preferences, and personal story. **AI assisted with code generation, debugging, and data processing.** Human review and validation remain necessary. No real user counts, verified admission statistics, shared backend, or tested external integrations are claimed.
+The founder defined the audience, requirements, design preferences, and personal story. **AI assisted with code generation, debugging, and data processing.** Human review and validation remain necessary. No real user counts or verified admission statistics are claimed. A configured Supabase project and live verification are required before claiming shared submissions are operational.
 
 ## Deployment
 
 The [live demo](https://kenqiguo.github.io/nextadmit/) is hosted on GitHub Pages. The workflow in `.github/workflows/pages.yml` publishes only `dist/` when website files change on `main`, and can also be run manually from GitHub Actions. No server or package installation is required for deployment.
 
-The public demo retains browser-local storage: visitors do not share submissions. Localhost and the public demo have separate storage.
+Shared mode must be explicitly configured and deployed before visitors can share submissions. Localhost and the public demo have separate legacy browser storage; old records are never uploaded automatically.
+
+## Optional shared database
+
+See [SHARED_DATABASE_SETUP.md](SHARED_DATABASE_SETUP.md) for creation, migration, moderation, and verification. Only a public `sb_publishable_...` key belongs in the browser configuration. Database policies allow public reads of approved profiles; validated submissions enter a private review queue. Visitors cannot directly change, approve, or delete records. Legacy browser records stay private and are never automatically migrated.
+
+Shared mode shows up to 500 latest approved profiles and offers a refresh button. Failed submissions preserve the form. Same-form retries reuse an idempotency UUID. The database enforces global submission bounds (20/minute, 300/day) and 5 submissions/day per anonymous identity; anonymous identities can be recreated, so this is not reliable per-person bot prevention. Cross-device visitor login, self-service editing/deletion, and CAPTCHA are not implemented. The official Supabase client manages anonymous sessions; reads remain public and only approved data is exposed.
+
+Run `node --test tests/shared-store.test.cjs`. Optional local PostgreSQL checks use a temporary PGlite install: `npm.cmd install --prefix tmp/database-check --no-save --ignore-scripts @electric-sql/pglite`, then `node tests/database-security.cjs`. This temporary test dependency is not part of the deployed site.

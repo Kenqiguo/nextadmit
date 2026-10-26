@@ -14,3 +14,7 @@ PROJECT_BRIEF.md
 CODEX_START_HERE.md
 LOCAL_PREVIEW_GUIDE.md
 AGENTS.md
+
+# Temporary database verification dependencies and downloaded documentation.
+tmp/database-check/
+tmp/supabase-changelog.md

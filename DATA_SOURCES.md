@@ -13,4 +13,4 @@ Computed total = CHG3AY3 (out-of-state tuition and required fees) + CHG4AY3 (boo
 
 IPEDS UNITID is the join key. Name mismatches are explicitly mapped to the correct campus in build_directory.py; fuzzy matches are not accepted. The script expects downloaded snapshots in /workspace and produces dist/universities.json. Snapshot data is already included in that JSON.
 
-Community records are fictional samples, clearly labeled. User submissions are browser-local, not public or server-synced. Language background is independent of domestic/international status; English native speakers skip test questions.
+Community records are fictional samples, clearly labeled. In unconfigured demo mode, user submissions are browser-local. Configured shared mode stores newly consented submissions in Supabase and displays them publicly after review; these remain self-reported, not verified admission records. Old local records are not uploaded. Language background is independent of domestic/international status; English native speakers skip test questions.
